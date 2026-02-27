@@ -1,0 +1,95 @@
+ /* seif hany-60103153 */
+
+/* Layout Container */
+.side-by-side-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* Common Card Style */
+.card {
+    background: #122b4a;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    height: 100%;
+}
+
+.info-column { flex: 1; }  /* Left side */
+.form-column { flex: 1.5; } /* Right side (slightly wider) */
+
+/* Typography */
+h2 { color: #4db8ff; margin-top: 0; margin-bottom: 20px; }
+p { color: #bcd3ea; line-height: 1.6; margin: 5px 0 15px 0; }
+strong { color: #ffffff; }
+
+/* Form Elements */
+fieldset {
+    border: 1px solid #1e4d7a;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+legend { color: #78ccff; font-weight: 600; padding: 0 10px; }
+
+.input-group { margin-bottom: 20px; }
+
+label { display: block; color: #bcd3ea; margin-bottom: 8px; font-weight: 600; }
+
+input[type="text"], input[type="email"], input[type="tel"], textarea {
+    width: 100%;
+    padding: 12px;
+    background: #0f2c4d;
+    border: 1px solid #1e4d7a;
+    border-radius: 6px;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.radio-row { display: flex; gap: 20px; color: #fff; }
+
+/* Buttons */
+.actions { display: flex; gap: 15px; margin-top: 25px; }
+
+.primary-btn {
+    background: #4db8ff;
+    color: #071426;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.primary-btn:hover { background: #78ccff; transform: translateY(-2px); }
+
+.secondary-btn {
+    background: #6c7a89;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Map */
+.map-box {
+    margin-top: 25px;
+    height: 250px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #1e4d7a;
+}
+.map-box iframe { width: 100%; height: 100%; border: none; }
+
+/* Tablet/Mobile View: Stack them vertically */
+@media (max-width: 900px) {
+    .side-by-side-container {
+        flex-direction: column;
+    }
+}
