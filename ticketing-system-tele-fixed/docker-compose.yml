@@ -1,0 +1,47 @@
+# docker-compose.yml — Full stack deployment
+# Containers: Flask backend, React frontend, MySQL database
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: ticketing_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: ticketing_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-ppassword"]
+      interval: 5s
+      timeout: 10s
+      retries: 20
+      start_period: 30s
+
+  backend:
+    build: ./backend
+    container_name: ticketing_backend
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: mysql+pymysql://root:password@db:3306/ticketing_db
+      SECRET_KEY: change-this-in-production
+      JWT_SECRET_KEY: change-this-jwt-secret
+    depends_on:
+      db:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    container_name: ticketing_frontend
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
